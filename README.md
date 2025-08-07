@@ -74,25 +74,25 @@ git clone https://github.com/pianist22/amrutam-backend.git
 
 Configure environment variables in `.env.local` (frontend) and `.env` (backend):
 *Frontend*
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxx
-NEXT_PUBLIC_SERVER_URL=https://your-backend.onrender.com
+-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxx
+-NEXT_PUBLIC_SERVER_URL=https://your-backend.onrender.com
 
 *Backend*
-CLERK_API_KEY=sk_test_xxx
-MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/database
-CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
+-CLERK_API_KEY=sk_test_xxx
+-MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/database
+-CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
 
 ### Run Locally
 
 **Backend:**
-cd amrutam-backend
-npm install
-npm start # or node server.js
+-cd amrutam-backend
+-npm install
+-npm start # or node server.js
 
 **Frontend:**
-cd amrutam-frontend
-npm install
-npm run dev
+-cd amrutam-frontend
+-npm install
+-npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the app.
 ---
