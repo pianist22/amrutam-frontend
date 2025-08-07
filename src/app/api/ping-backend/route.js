@@ -1,6 +1,6 @@
 export async function GET() {
   try {
-    const backendUrl = process.env.BACKEND_PING_URL;
+    const backendUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     const pingRes = await fetch(backendUrl);
     const data = await pingRes.text(); // or .json() depending on your backend
