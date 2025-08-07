@@ -1,0 +1,42 @@
+{
+  "userId": "user_30YRvjoYOu0TF6DTWkCooh5Ua6S",
+  "status": "Active",
+  "generalInformation": {
+    "ingredientName": "Citrak",
+    "scientificName": "Plumbago Zeylancia",
+    "sanskritName": "scientificName",
+    "ingredientDescription": "Citrak is a valued Ayurvedic herb known for its ability to lower blood sugar, improve digestion, and reduce anxiety. It also aids in wound healing with its antioxidant and antimicrobial properties, making it a popular remedy for digestive health and skin ailments.",
+    "ingredientURL": "https://res.cloudinary.com/drxkdvveg/image/upload/v1754306626/ingredients/iksbtopb7repdztfjmj4.png"
+  },
+  "whyToUse": ["Reduces cholesterol", "Boosts digestion"],
+  "prakritiImpact": {
+    "vata": "Balanced",
+    "kapha": "Balanced",
+    "pitta": "Unbalanced",
+    "vataReason": "Helps maintain equilibrium",
+    "kaphaReason": "Helps in maintaining metabolism",
+    "pittaReason": "Excess use may aggravate pitta"
+  },
+  "benefits": [
+    { "emoji": "🧘‍♂️", "text": "Relaxes mind" },
+    { "emoji": "💪", "text": "Strengthens body" }
+  ],
+  "ayurvedicProperties": {
+    "rasa": "Katu (Pungent)",
+    "veerya": "Ushna (Hot)",
+    "guna": "Laghu (Light)",
+    "vipaka": "Katu (Pungent)"
+  },
+  "importantFormulations": [
+    { "icon": "🍃", "name": "Chitrak Haritaki" }
+  ],
+  "therapeuticUses": ["Agni Deepan"],
+  "plantParts": [
+    { "part": "Root", "description": "Used for digestion related issues" }
+  ],
+  "bestCombinedWith": "Guggulu",
+  "geographicalLocation": "India"
+}
+JWT issued at date claim (iat) is in the future. Issued at date: Mon, 04 Aug 2025 15:15:54 GMT; Current date: Mon, 04 Aug 2025 15:15:47 GMT; (reason=token-iat-in-the-future, token-carrier=cookie)
+Clerk: Refreshing the session token resulted in an infinite redirect loop. This usually means that your Clerk instance keys do not match - make sure to copy the correct publishable and secret keys from the Clerk dashboard.
+
