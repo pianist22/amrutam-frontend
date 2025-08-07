@@ -1,23 +1,10 @@
 export async function GET() {
-  try {
-    const backendUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-
-    const pingRes = await fetch(backendUrl);
-    const data = await pingRes.text(); // or .json() depending on your backend
-
-    return Response.json({
-      message: 'Backend pinged successfully!',
-      response: data,
-    });
-  } catch (err) {
-    return new Response(
-      JSON.stringify({ message: 'Ping failed', error: err.message }),
-      { status: 500 }
-    );
-  }
+  return new Response(JSON.stringify({ message: "Pong from Vercel!" }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
-// Handle HEAD requests as well
 export async function HEAD() {
   return new Response(null, { status: 200 });
 }
