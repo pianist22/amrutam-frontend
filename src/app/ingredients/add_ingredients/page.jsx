@@ -232,7 +232,7 @@ const validateStep3 = () => {
     if (!isValid) return;
     
     setCompletedSteps(prev => new Set(prev).add(currentStep));
-    console.log('Form data at step', currentStep + 1, JSON.stringify(formData, null, 2));
+    // console.log('Form data at step', currentStep + 1, JSON.stringify(formData, null, 2));
     if (currentStep < STEPS.length - 1) {
       setCurrentStep(s => s + 1);
       return;

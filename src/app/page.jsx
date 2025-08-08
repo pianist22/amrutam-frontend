@@ -27,7 +27,7 @@ export default function Home() {
         });
 
         const data = await res.json();
-        console.log('✅ Backend user created:', data);
+        // console.log('✅ Backend user created:', data);
 
         // Redirect after backend creation
         router.push('/');
