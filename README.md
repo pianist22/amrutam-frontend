@@ -8,7 +8,7 @@ Welcome to **Amrutam**, a modern and comprehensive platform for managing Ayurved
 [Access the Amrutam live application here](https://amrutam-frontend-one.vercel.app/)  
 _Backend API hosted on Render
 
-##For Better Understanding:
+## For Better Understanding:
 Watch this video for better understanding [Link](https://youtu.be/6hmdMLaLEag?si=TuACldNORyb51qEA)
 
 ---
