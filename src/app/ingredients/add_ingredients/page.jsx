@@ -284,18 +284,22 @@ const validateStep3 = () => {
   };
 
   return (
-    <div>
-      <div className="text-green-800  text-xl flex items-center gap-1 mb-2">
+    <div className="mt-10 px-2 sm:px-4">
+      <div className="text-green-800 text-lg sm:text-xl flex items-center gap-1 ">
         {paths.length > 1 ? (
           <>
             <div className="font-semibold">{paths[0]}</div>
             <ChevronRight className="w-4 h-4 text-green-800" />
-            <div className='font-bold'>{paths[1]}</div>
+            <div className='font-bold'>
+              {paths[1]}
+            
+              </div>
           </>
         ) : (
           <div>{paths[0]}</div>
         )}
       </div>
+      <div>
       <ProgressBar steps={STEPS} currentStep={currentStep} completedSteps={completedSteps} />
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow">
         {
@@ -350,31 +354,151 @@ const validateStep3 = () => {
         </Button>
       </div>
     </div>
-  );
-}
-
-function ProgressBar({ steps, currentStep, completedSteps }) {
-  return (
-    <div className="flex justify-between items-center mb-8 max-w-3xl mx-auto">
-      {steps.map((step, index) => {
-        const completed = completedSteps.has(index);
-        const isActive = index === currentStep;
-        return (
-          <div key={step.label} className="flex flex-col items-center w-full">
-            <div
-              className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold 
-                ${completed ? "bg-green-600 border-green-600 text-white" : isActive ? "border-green-600 text-green-600" : "border-gray-300 text-gray-400"}`}
-            >
-              {completed ? "✓" : index + 1}
-            </div>
-            <span className={`mt-1 text-xs ${isActive ? "text-green-600" : "text-gray-400"}`}>{step.label}</span>
-            {index < steps.length - 1 && (
-              <div className={`h-0.5 w-full mx-auto mt-3 
-                ${completed ? "bg-green-600" : "bg-gray-300"}`}></div>
-            )}
-          </div>
-        );
-      })}
     </div>
   );
 }
+
+// function ProgressBar({ steps, currentStep, completedSteps }) {
+//   return (
+//     <div className="flex justify-between items-center mb-8 max-w-3xl mx-auto">
+//       {steps.map((step, index) => {
+//         const completed = completedSteps.has(index);
+//         const isActive = index === currentStep;
+//         return (
+//           <div key={step.label} className="flex flex-col items-center w-full">
+//             <div
+//               className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold 
+//                 ${completed ? "bg-green-600 border-green-600 text-white" : isActive ? "border-green-600 text-green-600" : "border-gray-300 text-gray-400"}`}
+//             >
+//               {completed ? "✓" : index + 1}
+//             </div>
+//             <span className={`mt-1 text-xs ${isActive ? "text-green-600" : "text-gray-400"}`}>{step.label}</span>
+//             {index < steps.length - 1 && (
+//               <div className={`h-0.5 w-full mx-auto mt-3 
+//                 ${completed ? "bg-green-600" : "bg-gray-300"}`}></div>
+//             )}
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// }
+
+// function ProgressBar({ steps, currentStep, completedSteps }) {
+//   return (
+//     <div className="flex flex-col sm:flex-row justify-between items-center mb-8 w-full max-w-5xl mx-auto px-2 sm:px-4">
+//       {steps.map((step, index) => {
+//         const completed = completedSteps.has(index);
+//         const isActive = index === currentStep;
+
+//         return (
+//           <div
+//             key={step.label}
+//             className="flex flex-col items-center flex-1 relative text-center"
+//           >
+//             {/* Step circle */}
+//             <div
+//               className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold shrink-0
+//                 ${
+//                   completed
+//                     ? "bg-green-600 border-green-600 text-white"
+//                     : isActive
+//                     ? "border-green-600 text-green-600"
+//                     : "border-gray-300 text-gray-400"
+//                 }`}
+//             >
+//               {completed ? "✓" : index + 1}
+//             </div>
+
+//             {/* Step label */}
+//             <span
+//               className={`mt-1 text-xs sm:text-sm max-w-[80px] sm:max-w-none break-words ${
+//                 isActive ? "text-green-600" : "text-gray-400"
+//               }`}
+//             >
+//               {step.label}
+//             </span>
+
+//             {/* Connector line */}
+//             {index < steps.length - 1 && (
+//               <div
+//                 className={`hidden sm:block absolute top-4 left-[50%] w-full h-0.5 z-[-1] 
+//                   ${completed ? "bg-green-600" : "bg-gray-300"}`}
+//                 style={{
+//                   transform: "translateX(50%)",
+//                   width: "100%",
+//                   maxWidth: "100%",
+//                 }}
+//               ></div>
+//             )}
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// }
+
+function ProgressBar({ steps, currentStep, completedSteps }) {
+  return (
+    <div className="w-full max-w-5xl mx-auto px-2 sm:px-4">
+      {/* Horizontal on sm+; vertical on xs */}
+      <div className="flex flex-col sm:flex-row items-center sm:items-start w-full gap-3 sm:gap-4">
+        {steps.map((step, index) => {
+          const completed = completedSteps.has(index);
+          const isActive = index === currentStep;
+          const circleClass =
+            "w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold shrink-0 " +
+            (completed
+              ? "bg-green-600 border-green-600 text-white"
+              : isActive
+              ? "border-green-600 text-green-600"
+              : "border-gray-300 text-gray-400");
+
+        return (
+          <React.Fragment key={step.label}>
+            {/* Step item */}
+            <div className="flex items-center sm:flex-col gap-2 sm:gap-2 text-center min-w-0">
+              <div className={circleClass}>
+                {completed ? "✓" : index + 1}
+              </div>
+              <span
+                className={
+                  "text-xs sm:text-sm font-medium max-w-[96px] sm:max-w-none truncate " +
+                  (isActive ? "text-green-600" : "text-gray-500")
+                }
+                title={step.label}
+              >
+                {step.label}
+              </span>
+            </div>
+
+            {/* Connector (horizontal on sm+, vertical on xs) */}
+            {index < steps.length - 1 && (
+              <>
+                {/* Horizontal connector for sm+ */}
+                <div className="hidden sm:flex flex-1 translate-y-5 items-center">
+                  <div
+                    className={
+                      "h-0.5 w-full rounded " +
+                      (completed ? "bg-green-600" : "bg-gray-300")
+                    }
+                  />
+                </div>
+
+                {/* Vertical connector for xs */}
+                <div
+                  className={
+                    "sm:hidden w-0.5 h-6 mx-auto rounded " +
+                    (completed ? "bg-green-600" : "bg-gray-300")
+                  }
+                />
+              </>
+            )}
+          </React.Fragment>
+        );
+        })}
+      </div>
+    </div>
+  );
+}
+
