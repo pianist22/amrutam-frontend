@@ -70,7 +70,7 @@ export default function Home() {
     );
   }
   return (
-  <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+  <div className="p-4 sm:p-6 mt-15 sm:mt-8 lg:p-8 max-w-7xl mx-auto">
       <h1 className="text-3xl mt-4 font-bold text-green-800 mb-6">Welcome,{user.fullName}!</h1>
 
       {/* Stats Cards Section */}
