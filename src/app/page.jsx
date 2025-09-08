@@ -1,12 +1,10 @@
 'use client';
-import { useAuth } from '@clerk/nextjs';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignInButton,SignUpButton } from '@clerk/nextjs';
 
 export default function Home() {
-  const { getToken } = useAuth();
  const { user, isLoaded ,isSignedIn} = useUser();
   const router = useRouter();
 

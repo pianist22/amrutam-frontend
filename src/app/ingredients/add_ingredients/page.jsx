@@ -284,7 +284,7 @@ const validateStep3 = () => {
   };
 
   return (
-    <div className="mt-10 px-2 sm:px-4">
+    <div className="mt-24 sm:mt-22 px-2 sm:px-4">
       <div className="text-green-800 text-lg sm:text-xl flex items-center gap-1 ">
         {paths.length > 1 ? (
           <>

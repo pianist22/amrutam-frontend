@@ -220,7 +220,7 @@ export default function Navbar({ logo }) {
   if (!showNav || !isLoaded) return <CustomLoader logo={amrutamLogo.src} />;
 
   return (
-    <header className="sticky top-0 inset-x-0 z-50 w-full bg-white shadow-[0_0_14px_0_rgba(204,204,204,0.25)]">
+    <header className="fixed top-0 inset-x-0 z-50 w-full bg-white shadow-[0_0_14px_0_rgba(204,204,204,0.25)]">
       {/* Full-width row without max-w constraint */}
       <div className="w-full px-3 sm:px-4 md:px-8 h-16 sm:h-[72px] flex items-center gap-3">
         {/* Left: Logo + Name */}

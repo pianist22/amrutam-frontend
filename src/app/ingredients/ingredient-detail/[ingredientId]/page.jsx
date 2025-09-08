@@ -307,7 +307,7 @@ export default function IngredientDetailPage() {
   );
 
   return (
-    <div className="max-w-5xl mx-auto py-8 px-2 sm:px-4">
+    <div className="max-w-5xl mt-18 sm:mt-15 mx-auto py-8 px-2 sm:px-4">
       <div className="flex items-center gap-2 text-green-700  text-lg sm:text-xl mb-4">
         <div>Ingredient  </div>
         <ChevronRight className="w-4 h-4 text-green-700" />

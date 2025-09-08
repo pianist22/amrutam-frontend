@@ -108,7 +108,7 @@ export default function Sidebar() {
     <>
       {/* Desktop Sidebar */}
       <aside
-        className="hidden md:flex flex-col w-[232px] bg-white border border-gray-200 shadow-lg mt-6 ml-6 rounded-2xl pt-4 px-1 h-fit mb-2"
+        className="hidden md:flex flex-col w-[232px] bg-white border border-gray-200 shadow-lg mt-20 ml-6 rounded-2xl pt-4 px-1 h-fit mb-2"
       >
         <div className="flex flex-col gap-1">
           {sidebarItems.map(({ label, icon, href, children }) => {

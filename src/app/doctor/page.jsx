@@ -9,7 +9,7 @@ const Page = () => {
   const paths = formatPathname(pathname);
 
   return (
-    <div className="mt-2">
+    <div className="mt-24 sm:mt-22">
       <div className="text-green-800  text-xl flex items-center gap-1">
         {paths.length > 1 ? (
           <>
