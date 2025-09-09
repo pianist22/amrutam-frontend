@@ -102,86 +102,57 @@ export default function IngredientCreationPage() {
   };
 
   // Validation for Step 1/2/3 (properties)
-  // const validateStep3 = () => {
-  //   const errs = {};
-  //   const data = formData.propertiesStep;
-  //   const ayp = data.ayurvedicProperties;
+  const validateStep4 = () => {
+    const errs = {};
+    const data = formData.othersStep;
 
-  //   ['rasa', 'veerya', 'guna', 'vipaka'].forEach(field => {
-  //     if (!AYURVEDIC_OPTIONS.includes(ayp[field])) {
-  //       errs.ayurvedicProperties = "All fields in Ayurvedic Properties are required.";
-  //     }
-  //   });
-
-  //   if (
-  //     !data.importantFormulations.length ||
-  //     data.importantFormulations.some(f => !f.icon || !f.name.trim())
-  //   ) {
-  //     errs.importantFormulations = "At least one formulation (icon + name) required.";
-  //   }
-
-  //   if (
-  //     !data.therapeuticUses.length ||
-  //     data.therapeuticUses.some(t => !t.trim())
-  //   ) {
-  //     errs.therapeuticUses = "Please add at least one therapeutic use.";
-  //   }
-
-  //   setErrors(errs);
-  //   return Object.keys(errs).length === 0;
-  // };
-
-const validateStep4 = () => {
-  const errs = {};
-  const data = formData.othersStep;
-
-  // Plant Parts validation
-  if (
-    !data.plantParts.length ||
-    data.plantParts.some(p => !p.part || !p.description.trim())
-  ) {
-    errs.plantParts = "Each plant part and its description is required.";
-  }
-  if (!data.bestCombinedWith.trim()) {
-    errs.bestCombinedWith = "Please enter what this ingredient is best combined with.";
-  }
-  if (!data.geographicalLocation.trim()) {
-    errs.geographicalLocation = "Please enter a geographical location.";
-  }
-  setErrors(errs);
-  return Object.keys(errs).length === 0;
-};
-
-
-const validateStep3 = () => {
-  const errs = {};
-  const data = formData.propertiesStep;
-  const ayp = data.ayurvedicProperties;
-
-  ['rasa', 'veerya', 'guna', 'vipaka'].forEach(field => {
-    if (!AYURVEDIC_OPTIONS.includes(ayp[field])) {
-      if (!errs.ayurvedicProperties) errs.ayurvedicProperties = {};
-      errs.ayurvedicProperties[field] = `${field} is required`;
+    // Plant Parts validation
+    if (
+      !data.plantParts.length ||
+      data.plantParts.some(p => !p.part || !p.description.trim())
+    ) {
+      errs.plantParts = "Each plant part and its description is required.";
     }
-  });
-
-  if (
-    !data.importantFormulations.length ||
-    data.importantFormulations.some(f => !f.icon || !f.name.trim())
-  ) {
-    errs.importantFormulations = "At least one formulation (icon + name) required.";
-  }
-
-  if (!data.therapeuticUses.length || data.therapeuticUses.some(t => !t.trim())) {
-    errs.therapeuticUses = "Please add at least one therapeutic use.";
-  }
-
-  setErrors(errs);
-  return Object.keys(errs).length === 0;
-};
+    if (!data.bestCombinedWith.trim()) {
+      errs.bestCombinedWith = "Please enter what this ingredient is best combined with.";
+    }
+    if (!data.geographicalLocation.trim()) {
+      errs.geographicalLocation = "Please enter a geographical location.";
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
 
-// Validation for Step 1 and then Step 2
+  const validateStep3 = () => {
+    const errs = {};
+    const data = formData.propertiesStep;
+    const ayp = data.ayurvedicProperties;
+
+    ['rasa', 'veerya', 'guna', 'vipaka'].forEach(field => {
+      if (!AYURVEDIC_OPTIONS.includes(ayp[field])) {
+        if (!errs.ayurvedicProperties) errs.ayurvedicProperties = {};
+        errs.ayurvedicProperties[field] = `${field} is required`;
+      }
+    });
+
+    if (
+      !data.importantFormulations.length ||
+      data.importantFormulations.some(f => !f.icon || !f.name.trim())
+    ) {
+      errs.importantFormulations = "At least one formulation (icon + name) required.";
+    }
+
+    if (!data.therapeuticUses.length || data.therapeuticUses.some(t => !t.trim())) {
+      errs.therapeuticUses = "Please add at least one therapeutic use.";
+    }
+
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+
+  // Validation for Step 1 and then Step 2
   const validateStep1 = () => {
     const errs = {};
     const data = formData.generalInfo;
@@ -216,8 +187,6 @@ const validateStep3 = () => {
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
-
-
 
   const validateCurrentStep = () => {
     if (currentStep === 0) return validateStep1();
@@ -292,7 +261,6 @@ const validateStep3 = () => {
             <ChevronRight className="w-4 h-4 text-green-800" />
             <div className='font-bold'>
               {paths[1]}
-            
               </div>
           </>
         ) : (
@@ -358,85 +326,6 @@ const validateStep3 = () => {
   );
 }
 
-// function ProgressBar({ steps, currentStep, completedSteps }) {
-//   return (
-//     <div className="flex justify-between items-center mb-8 max-w-3xl mx-auto">
-//       {steps.map((step, index) => {
-//         const completed = completedSteps.has(index);
-//         const isActive = index === currentStep;
-//         return (
-//           <div key={step.label} className="flex flex-col items-center w-full">
-//             <div
-//               className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold 
-//                 ${completed ? "bg-green-600 border-green-600 text-white" : isActive ? "border-green-600 text-green-600" : "border-gray-300 text-gray-400"}`}
-//             >
-//               {completed ? "✓" : index + 1}
-//             </div>
-//             <span className={`mt-1 text-xs ${isActive ? "text-green-600" : "text-gray-400"}`}>{step.label}</span>
-//             {index < steps.length - 1 && (
-//               <div className={`h-0.5 w-full mx-auto mt-3 
-//                 ${completed ? "bg-green-600" : "bg-gray-300"}`}></div>
-//             )}
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
-
-// function ProgressBar({ steps, currentStep, completedSteps }) {
-//   return (
-//     <div className="flex flex-col sm:flex-row justify-between items-center mb-8 w-full max-w-5xl mx-auto px-2 sm:px-4">
-//       {steps.map((step, index) => {
-//         const completed = completedSteps.has(index);
-//         const isActive = index === currentStep;
-
-//         return (
-//           <div
-//             key={step.label}
-//             className="flex flex-col items-center flex-1 relative text-center"
-//           >
-//             {/* Step circle */}
-//             <div
-//               className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold shrink-0
-//                 ${
-//                   completed
-//                     ? "bg-green-600 border-green-600 text-white"
-//                     : isActive
-//                     ? "border-green-600 text-green-600"
-//                     : "border-gray-300 text-gray-400"
-//                 }`}
-//             >
-//               {completed ? "✓" : index + 1}
-//             </div>
-
-//             {/* Step label */}
-//             <span
-//               className={`mt-1 text-xs sm:text-sm max-w-[80px] sm:max-w-none break-words ${
-//                 isActive ? "text-green-600" : "text-gray-400"
-//               }`}
-//             >
-//               {step.label}
-//             </span>
-
-//             {/* Connector line */}
-//             {index < steps.length - 1 && (
-//               <div
-//                 className={`hidden sm:block absolute top-4 left-[50%] w-full h-0.5 z-[-1] 
-//                   ${completed ? "bg-green-600" : "bg-gray-300"}`}
-//                 style={{
-//                   transform: "translateX(50%)",
-//                   width: "100%",
-//                   maxWidth: "100%",
-//                 }}
-//               ></div>
-//             )}
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
 
 function ProgressBar({ steps, currentStep, completedSteps }) {
   return (

@@ -58,19 +58,68 @@ const renderSanskrit = (word) => {
   return <span style={DEVANAGARI_FONT} className="text-2xl font-bold text-green-800 tracking-wide">{devanagari}</span>;
 };
 
-function ActionsMenu({ onEdit, onDelete }) {
+// function ActionsMenu({ onEdit, onDelete }) {
+//   const [open, setOpen] = useState(false);
+//   return (
+//     <div className="relative">
+//       <button onClick={() => setOpen(v => !v)} onBlur={() => setTimeout(() => setOpen(false), 150)} className="rounded-full hover:bg-green-100 p-1">
+//         <MoreVertical className="w-6 h-6 text-green-700" />
+//       </button>
+//       {open && (
+//         <div className="absolute right-0 z-50 mt-2 min-w-[180px] bg-white border rounded-lg shadow">
+//           <button className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100" onClick={onEdit}>
+//             Edit Section
+//           </button>
+//           <button className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-50" onClick={onDelete}>
+//             Delete Ingredient
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// ---- MAIN COMPONENT ----
+
+function ActionsMenu({ onEdit, onDelete, onToggleStatus, status }) {
   const [open, setOpen] = useState(false);
+  const isActive = status === "Active";
+  const toggleLabel = isActive ? "Inactive" : "Active";
+  const toggleColor =
+    isActive
+      ? "text-red-600 hover:bg-red-50"     // going inactive
+      : "text-green-600 hover:bg-green-50"; // going active
+
   return (
     <div className="relative">
-      <button onClick={() => setOpen(v => !v)} onBlur={() => setTimeout(() => setOpen(false), 150)} className="rounded-full hover:bg-green-100 p-1">
+      <button
+        onClick={() => setOpen(v => !v)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        className="rounded-full hover:bg-green-100 p-1"
+      >
         <MoreVertical className="w-6 h-6 text-green-700" />
       </button>
       {open && (
-        <div className="absolute right-0 z-50 mt-2 min-w-[180px] bg-white border rounded-lg shadow">
-          <button className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100" onClick={onEdit}>
+        <div className="absolute right-0 z-50 mt-2 min-w-[200px] bg-white border rounded-lg shadow">
+          <button
+            className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100"
+            onClick={onEdit}
+          >
             Edit Section
           </button>
-          <button className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-50" onClick={onDelete}>
+
+          {/* New toggle action */}
+          <button
+            className={`block w-full px-4 py-2 text-left ${toggleColor}`}
+            onClick={onToggleStatus}
+          >
+            {toggleLabel}
+          </button>
+
+          <button
+            className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-50"
+            onClick={onDelete}
+          >
             Delete Ingredient
           </button>
         </div>
@@ -79,7 +128,7 @@ function ActionsMenu({ onEdit, onDelete }) {
   );
 }
 
-// ---- MAIN COMPONENT ----
+
 export default function IngredientDetailPage() {
   const router = useRouter();
   const params = useParams();
@@ -144,6 +193,27 @@ export default function IngredientDetailPage() {
     }
     setUploadingImg(false);
   };
+
+// inside IngredientDetailPage component
+
+  const handleToggleStatus = async () => {
+    if (!ingredient?._id) return;
+    try {
+      const next = ingredient.status === "Active" ? "Inactive" : "Active";
+      const res = await fetch(`${serverUrl}/api/v1/ingredients/toggle-status/${ingredient._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: next }),
+      });
+      if (!res.ok) throw new Error("Toggle failed");
+      const data = await res.json();
+      toast.success(`Status updated to ${data.ingredient.status}`);
+      setIngredient(data.ingredient); // instant UI update
+    } catch (e) {
+      toast.error("Failed to update status");
+    }
+  };
+
 
   // Section editing logic
   const beginEdit = (section) => {
@@ -317,7 +387,12 @@ export default function IngredientDetailPage() {
       <Section
         icon="📝"
         label="General Information"
-        actions={<ActionsMenu onEdit={() => beginEdit("general")} onDelete={handleDelete} />}
+        actions={<ActionsMenu
+        onEdit={() => beginEdit("general")}
+        onDelete={handleDelete}
+        onToggleStatus={handleToggleStatus}
+        status={ingredient.status}
+        />}
       >
         {!editSection || editSection !== "general" ? (
           <div className="flex flex-col items-center text-center gap-5">

@@ -227,7 +227,15 @@ export default function IngredientsList() {
                       : ing?.generalInformation?.ingredientDescription || ''}
                   </TableCell>
 
-                  <TableCell className="text-green-700 text-right font-semibold whitespace-nowrap">
+                  <TableCell
+                    className={`text-right font-semibold whitespace-nowrap ${
+                      ing?.status === 'Inactive'
+                        ? 'text-red-600'
+                        : ing?.status === 'Active'
+                        ? 'text-green-700'
+                        : 'text-gray-600'
+                    }`}
+                  >
                     {ing?.status}
                   </TableCell>
                 </TableRow>
